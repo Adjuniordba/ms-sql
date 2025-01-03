@@ -1,0 +1,16 @@
+
+if OBJECT_ID('tempdb..#temp') IS NOT NULL
+DROP TABLE #temp
+ 
+create table #temp ([name] varchar(1000), [rows] bigint, [reserved] varchar(1000),
+ [data] varchar(1000), [index_size] varchar(1000), [unsed] varchar(1000))
+ 
+insert into #temp
+EXEC sp_MSforeachtable @command1="print '>>>Tabela: ?' ", @command2="sp_spaceused '?' "
+ 
+select db_name(db_id()) as base
+, * 
+from #temp 
+where [rows] > 0
+order by 2 desc
+

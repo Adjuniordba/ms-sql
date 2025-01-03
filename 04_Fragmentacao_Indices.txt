@@ -1,0 +1,41 @@
+
+-- fragmentação de índices
+/*
+-- CAMPO avg_fragmentation_in_percent ENTRE 5 E 30  -- REORG E PARA VERSOES ENTERPRISE USE A OPCAO ONLINE 
+-- reorganizar um índice específico
+ALTER INDEX IX_NAME ON onwer.tabela REORGANIZE /*PARA VERSOES ENTERPRISE */WITH (ONLINE = ON) ;   
+GO  
+
+-- reorganizar todos os índices de uma tabela
+ALTER INDEX ALL ON dbo.Employee REORGANIZE ;   
+GO  
+
+-- CAMPO avg_fragmentation_in_percent ACIMA DE 30  -- REORG E PARA VERSOES ENTERPRISE USE A OPCAO ONLINE 
+-- rebuild de um índice específico
+ALTER INDEX NOME_INDICE ON onwer.tabela REBUILD /*PARA VERSOES ENTERPRISE */WITH (ONLINE = ON) ;
+
+-- rebuild de todos índice de uma tabela
+ALTER INDEX ALL ON onwer.tabela REBUILD /*PARA VERSOES ENTERPRISE */WITH (ONLINE = ON)
+
+
+*/
+
+exec sp_MSforeachdb
+
+' use ?
+SELECT db_name() as [database], dbschemas.[name] as [schema],
+dbtables.[name] as [table],
+dbindexes.[name] as [index],
+indexstats.avg_fragmentation_in_percent,
+indexstats.page_count
+, fill_factor
+FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, NULL) AS indexstats
+INNER JOIN sys.tables dbtables on dbtables.[object_id] = indexstats.[object_id]
+INNER JOIN sys.schemas dbschemas on dbtables.[schema_id] = dbschemas.[schema_id]
+INNER JOIN sys.indexes AS dbindexes ON dbindexes.[object_id] = indexstats.[object_id]
+AND indexstats.index_id = dbindexes.index_id
+WHERE indexstats.database_id = DB_ID() 
+ and indexstats.avg_fragmentation_in_percent > 0
+and dbindexes.[name] is not null
+
+ '
