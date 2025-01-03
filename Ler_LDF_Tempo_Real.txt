@@ -1,34 +1,33 @@
 /******
-
-(c) Walk the Way, 2025 (ver licença anexa)
-Para usar isso:
-1) O SQL Server Management Studio deve ser “Executar como administrador” (ou usando uma conta de administrador)
-2) O usuário de login SQL deve ter função de servidor SQL sysadmin
-Para executar DBCC PAGE: parece que o usuário SQL deve ter a função de servidor SQL sysadmin
-Para sys.fn_dblog: o usuário SQL deve ter permissão SELECT para "master" nos bancos de dados do sistema
-Para SQL 2008, remova o comentário da linha 1150 (DATA não suportada no SQL 2005)
+(c) Walk the Way, 2023 (see accompanying license)
+To use this:
+1) SQL Server Management Studio must be "Run as administrator" (or using an admin account)
+2) The SQL login User must have SQL sysadmin Server Role
+For running DBCC PAGE: it appears that the SQL User must have SQL sysadmin Server Role
+For sys.fn_dblog: the SQL User must have SELECT permission for "master" in System Databases
+For SQL 2008 uncomment line 1150 (DATE not suppported in SQL 2005)
  
-A licença aberta da WTW
+The WTW Open License
  
-Direitos autorais (c) 2025 Walk the Way; todos os direitos reservados, exceto o seguinte:
+Copyright (c) 2023 Walk the Way; all rights reserved, except as follows:
  
-É concedida permissão, gratuitamente, a qualquer pessoa que obtenha uma cópia
-deste software e arquivos de documentação associados (o "Software"), para lidar
-no Software da seguinte forma: o direito irrestrito de usar, copiar, modificar, mesclar,
-publicar, distribuir, sublicenciar e permitir que pessoas a quem o Software
-está capacitado para fazê-lo, sujeito às seguintes condições:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software as follows: the unrestricted right to use, copy, modify, merge,
+publish, distribute, sublicense, and to permit persons to whom the Software
+is furnished to do so, subject to the following conditions:
  
-O aviso de direitos autorais acima e este aviso de permissão serão incluídos em todos
-cópias ou partes substanciais do Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
  
-O SOFTWARE É FORNECIDO "COMO ESTÁ", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU
-IMPLÍCITAS, INCLUINDO, MAS NÃO SE LIMITANDO ÀS GARANTIAS DE COMERCIALIZAÇÃO,
-ADEQUAÇÃO A UM DETERMINADO FIM E NÃO VIOLAÇÃO. EM HIPÓTESE ALGUMA O
-OS AUTORES OU DETENTORES DE DIREITOS AUTORAIS SERÃO RESPONSÁVEIS POR QUALQUER RECLAMAÇÃO, DANOS OU OUTROS
-RESPONSABILIDADE, SEJA EM UMA AÇÃO DE CONTRATO, ATO ILÍCITO OU DE OUTRA FORMA, DECORRENTE DE,
-FORA DE OU EM CONEXÃO COM O SOFTWARE OU O USO OU OUTRAS NEGOCIAÇÕES NO
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
+ 
 modo de usar:
  
 Recover_Modified_Data_Proc 'Nome_Da_Base', 'dbo.Tabela'
@@ -36,6 +35,7 @@ Recover_Modified_Data_Proc 'Nome_Da_Base', 'dbo.Tabela'
 Recover_Modified_Data_Proc 'Nome_Da_Base', 'dbo.Tabela', '2014/07/16', '2014/07/18' --com periodo
  
 ******/
+
 
 
 
